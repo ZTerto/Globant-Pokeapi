@@ -18,5 +18,7 @@ reload: down up
 
 # Reconstruir frontend con todo lo necesario
 build frontend:
+	mkdir frontend && \
 	cd frontend && \
 	npm create vite@latest && \
+	npm install -D tailwindcss postcss autoprefixer
