@@ -21,4 +21,5 @@ build frontend:
 	mkdir frontend && \
 	cd frontend && \
 	npm create vite@latest && \
+	npm install react-router-dom && \
 	npm install -D tailwindcss postcss autoprefixer
