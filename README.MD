@@ -1,2 +1,4 @@
 # Pokeapi
 En proceso...
+
+## Requisitos
