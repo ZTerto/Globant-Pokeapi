@@ -47,7 +47,7 @@ build0:
 	echo ""; \
 	echo "✅ docker-compose.yml creado correctamente con puerto 8080."
 
-
+# Configurar Vite
 build1:
 	cd frontend && \
 	echo ""; \
@@ -97,3 +97,9 @@ build2:
 	echo "" >> dockerfile && \
 	echo "# Comando para modo dev" >> dockerfile && \
 	echo 'CMD ["npm", "run", "dev", "--", "--host", "--port", "8080"]' >> dockerfile
+
+build3:
+	cd frontend && \
+	echo "🚏 Instalando dependencias para SPA..." && \
+	npm install react-router-dom @types/react-router-dom && \
+	echo "✅ Dependencias SPA instaladas."
