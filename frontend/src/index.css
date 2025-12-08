@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import "tailwindcss";
+
+
+.spin-slow 
+{
+  animation: spin 3s linear infinite;
+}

@@ -5,7 +5,6 @@ up:
 	docker-compose down --volumes --remove-orphans || true
 	docker-compose up frontend
 
-
 # Levantar entorno vite
 upVite:
 	cd frontend && \
