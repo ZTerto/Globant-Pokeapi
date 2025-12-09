@@ -12,7 +12,6 @@ Generador visual de fusiones Pokémon basado en sus tipos, colores y formas. Est
   - Imagen generada
   - Prompt utilizado
   - Fecha de creación
-- 🖼️ Visualización de las **últimas 12 fusiones** en cuadrícula (6 arriba + 6 abajo)
 - 🧰 Configurado con Docker y Makefile para automatizar todo el entorno
 
 ---
