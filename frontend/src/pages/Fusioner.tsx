@@ -13,20 +13,17 @@ export default function Fusioner()
   const [isWorking, setIsWorking] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
-  const handleFusion = async () => 
-  {
+  const handleFusion = async () => {
     if (isWorking) return;
 
     setIsWorking(true);
     setImageUrl(null);
 
-    try 
-    {
+    try {
       const left = await getPokemonInfoFromId(leftId);
       const right = await getPokemonInfoFromId(rightId);
 
-      if (!left || !right) 
-      {
+      if (!left || !right) {
         console.error("Error fetching Pokémon info.");
         setIsWorking(false);
         return;
@@ -35,12 +32,21 @@ export default function Fusioner()
       const prompt = generateFusionPrompt(left, right);
       const encodedPrompt = encodeURIComponent(prompt);
       const url = `https://image.pollinations.ai/prompt/${encodedPrompt}`;
-      setImageUrl(url);
-      
-    } 
-    catch (error) 
-    {
-      console.error("Error during fusion:", error);
+
+      setImageUrl(url); // Mostrar en pantalla
+
+      // ✅ Guardar imagen + metadata en backend
+      await fetch("http://localhost:3001/save-image", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          imageUrl: url,
+          prompt: prompt // usa el mismo que usaste para generar
+        }),
+      });
+    } catch (error) {
+      console.error("Fusion error:", error);
+    } finally {
       setIsWorking(false);
     }
   };

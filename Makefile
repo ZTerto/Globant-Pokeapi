@@ -5,6 +5,16 @@ up:
 	docker-compose down --volumes --remove-orphans || true
 	docker-compose up frontend
 
+
+# Levantar entorno docker
+upFrontend:
+	docker-compose down --volumes --remove-orphans || true
+	docker-compose up frontend
+
+# Levantar entorno docker
+upBackend:
+	cd backend && node index.js
+
 # Levantar entorno vite
 upVite:
 	cd frontend && \
@@ -18,8 +28,16 @@ down:
 reload: down up
 
 clean:
+	@echo "🧹 Limpiando entorno del frontend..."
 	rm -rf frontend
-	rm -rf frontend docker-compose.yml
+	rm -f docker-compose.yml
+
+	@echo "🧹 Limpiando entorno del backend..."
+	rm -rf backend
+	rm -rf mongo-data
+
+	@echo "✅ Limpieza completada."
+
 
 # Construir entorno docker con Vite y TailwindCSS
 build0:
@@ -102,3 +120,18 @@ build3:
 	echo "🚏 Instalando dependencias para SPA..." && \
 	npm install react-router-dom @types/react-router-dom && \
 	echo "✅ Dependencias SPA instaladas."
+
+build4:
+	@echo "🛠️  Creando carpetas del backend..."
+	mkdir -p backend/images
+	mkdir -p backend/db
+
+	@echo "📦 Inicializando npm y añadiendo dependencias (Express + SQLite)..."
+	cd backend && npm init -y
+	cd backend && npm install express axios fs-extra cors better-sqlite3
+
+	@echo "✅ build4 completado. Estructura creada:"
+	@echo " - backend/images/        (para imágenes generadas)"
+	@echo " - backend/db/data.db     (se creará al ejecutar index.js)"
+
+
