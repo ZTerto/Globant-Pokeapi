@@ -16,14 +16,8 @@ Generador visual de fusiones Pokémon basado en sus tipos, colores y formas. Est
 
 ---
 
-## 📸 Vistas del Proyecto
-
-### 🏠 Página Principal (`Home`)
-
-![Home Screenshot](./frontend/public/screenshots/home.png)
-
-### 🧪 Generador de Fusión (`Fusioner`)
-
+## 📸 Vista del Proyecto
+![Home](./frontend/public/screenshots/home.png)
 ![Fusioner Screenshot](./frontend/public/screenshots/fusioner.png)
 
 ---
