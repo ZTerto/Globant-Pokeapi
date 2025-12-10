@@ -38,12 +38,16 @@ export default function Fusioner()
       // ✅ Guardar imagen + metadata en backend
       await fetch("http://localhost:3001/save-image", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
         body: JSON.stringify({
-          imageUrl: url,
-          prompt: prompt // usa el mismo que usaste para generar
+        imageUrl: url,
+        prompt: prompt
         }),
       });
+
     } catch (error) {
       console.error("Fusion error:", error);
     } finally {
