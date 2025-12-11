@@ -96,7 +96,7 @@ export default function Fusioner()
   }
 
 return (
-  <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
+  <div className="flex flex-col items-center justify-center max-h-screen bg-gray-100 p-8">
     <table className="table-auto border-collapse bg-white shadow-lg">
       <tbody>
 

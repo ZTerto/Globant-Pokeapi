@@ -4,7 +4,7 @@
 up:
 	docker-compose down --volumes --remove-orphans || true
 	docker-compose up -d frontend
-	cd backend && node index.js &
+	docker run -p 3001:3001 pokeapi-backend
 
 # Levantar entorno docker
 upFrontend:
@@ -13,11 +13,23 @@ upFrontend:
 
 # Levantar entorno docker
 upBackend:
-	cd backend && node index.js
+	docker run -p 3001:3001 pokeapi-backend
 
 # Apagar entorno
 down:
-	docker-compose down
+	@echo "🛑 Cerrando contenedores con docker-compose..."
+	-docker-compose down
+
+	@echo "🔍 Buscando procesos usando el puerto 3001..."
+	@if lsof -i :3001 | grep LISTEN; then \
+		echo "⚠️  Puerto 3001 en uso. Matando proceso..."; \
+		lsof -ti :3001 | xargs kill -9; \
+	else \
+		echo "✅ Puerto 3001 libre."; \
+	fi
+
+	@echo "✅ Entorno detenido correctamente."
+
 
 # Acceder a la base de datos SQLite
 db:

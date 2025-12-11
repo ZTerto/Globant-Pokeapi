@@ -42,7 +42,7 @@ export default function Home()
   const fusionRows = splitIntoRows(recentFusions.slice(0, 12));
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center p-8 gap-6">
+    <div className="flex flex-col items-center justify-center max-h-screen text-center p-8 gap-6">
 
       {/* 2 filas de imágenes arriba */}
       {fusionRows.slice(0, 2).map((row, i) => (

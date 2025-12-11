@@ -51,7 +51,7 @@ export default function Login()
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center">
+    <div className="flex flex-col items-center justify-center max-h-screen p-6 text-center">
       <h1 className="text-3xl font-bold mb-6">
         {isLoginMode ? "Log In" : "Register"}
       </h1>
