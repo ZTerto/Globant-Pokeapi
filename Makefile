@@ -2,6 +2,7 @@
 
 # Levantar entorno docker
 up:
+	docker build -t pokeapi-backend ./backend
 	docker-compose down --volumes --remove-orphans || true
 	docker-compose up -d frontend
 	docker run -p 3001:3001 pokeapi-backend

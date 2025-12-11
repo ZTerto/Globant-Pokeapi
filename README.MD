@@ -5,7 +5,6 @@ Generador visual de fusiones Pokémon basado en sus tipos, colores y formas. Est
 ---
 
 ## 🧩 Características
-
 - Frontend moderno con React, Vite y TailwindCSS
 - Backend robusto con Express y SQLite (better-sqlite3)
 - Generación de fusiones Pokémon con IA usando prompts dinámicos
