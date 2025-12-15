@@ -2,31 +2,32 @@
 
 # Levantar entorno docker
 up:
-	docker build -t pokeapi-backend ./backend
+	- docker rm -f pokeapi-backend || true
 	docker-compose down --volumes --remove-orphans || true
-	docker-compose up -d frontend
-	docker run -p 3001:3001 pokeapi-backend
+	docker-compose up --build -d
+	@echo ""
+	@echo "🌐 Frontend: http://localhost:8080"
+	@echo "🔧 Backend:  http://localhost:3000"
 
 # Levantar entorno docker
 upFrontend:
-	docker-compose down --volumes --remove-orphans || true
-	docker-compose up frontend
+	docker-compose up -d frontend
 
 # Levantar entorno docker
 upBackend:
-	docker run -p 3001:3001 pokeapi-backend
+	docker-compose up -d backend
 
 # Apagar entorno
 down:
 	@echo "🛑 Cerrando contenedores con docker-compose..."
 	-docker-compose down
 
-	@echo "🔍 Buscando procesos usando el puerto 3001..."
-	@if lsof -i :3001 | grep LISTEN; then \
-		echo "⚠️  Puerto 3001 en uso. Matando proceso..."; \
-		lsof -ti :3001 | xargs kill -9; \
+	@echo "🔍 Buscando procesos usando el puerto 3000..."
+	@if lsof -i :3000 | grep LISTEN; then \
+		echo "⚠️  Puerto 3000 en uso. Matando proceso..."; \
+		lsof -ti :3000 | xargs kill -9; \
 	else \
-		echo "✅ Puerto 3001 libre."; \
+		echo "✅ Puerto 3000 libre."; \
 	fi
 
 	@echo "✅ Entorno detenido correctamente."
@@ -47,17 +48,6 @@ db:
 
 # Reiniciar
 reload: down up
-
-clean:
-	@echo "🧹 Limpiando entorno del frontend..."
-	rm -rf frontend
-	rm -f docker-compose.yml
-
-	@echo "🧹 Limpiando entorno del backend..."
-	rm -rf backend
-	rm -rf mongo-data
-
-	@echo "✅ Limpieza completada."
 
 build:
 	@echo "🧪 Verificando entorno..."
@@ -100,6 +90,14 @@ build:
 		exit 1; \
 	else \
 		echo "✅ docker-compose instalado: $$(docker-compose --version)"; \
+	fi
+
+	@# Verificar sqlite3
+	@if ! command -v sqlite3 > /dev/null; then \
+		echo "❌ sqlite3 no está instalado. Instálalo con: sudo apt install sqlite3"; \
+		exit 1; \
+	else \
+		echo "✅ sqlite3 instalado: $$(sqlite3 --version)"; \
 	fi
 
 	@echo "🎉 Todos los requisitos están satisfechos."
